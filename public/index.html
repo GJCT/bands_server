@@ -13,6 +13,7 @@
 
     <script>
         var socket = io();
+
         socket.on('connect', function() {
             console.log('Conectado al servidor');
         });
@@ -22,8 +23,14 @@
 
         //escuchar y emitir mensajes
         socket.emit('mensaje', {nombre: 'Gabriel'});
-        socket.on('mensaje', function(payload) {
-           console.lof('Escuchando:', payload); 
+
+        socket.on('nuevo-mensaje', function(payload) {
+           console.log('Escuchando:', payload); 
+        });
+
+        socket.on('active-bands', function(bands) {
+            console.clear();
+            console.table('Visualizando:', bands);
         });
     </script>
 </body>
